@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bg-transparent-imp {
+    background-color: transparent!important;
+}
+.bx-none {
+    box-shadow: none!important;
+}
+.p-none {
+    padding: 0 4px!important;
+}
+.mat-expansion-indicator::after {
+    border-color: rgb(147 197 253)!important;
+}
+.mat-expansion-panel-body {
+    padding: 0!important;
+}
+.search .mat-mdc-form-field-infix {
+    padding: 10px 0 !important;
+}
+.mat-mdc-form-field-subscript-wrapper {
+    display: none;
+}
+.search .mat-mdc-form-field-infix {
+    display: flex;
+    align-items: center;
+}
+.search .mat-mdc-form-field-infix {
+    min-height: 30px;
+}
+.menu {
+    height: calc( 100% - 60px );
+}
+.menu::-webkit-scrollbar {
+    width: 3px;
+    background-color: transparent;
+}

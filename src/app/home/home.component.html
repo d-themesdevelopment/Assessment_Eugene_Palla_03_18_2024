@@ -1,0 +1,60 @@
+<div class="flex w-full bg-slate-300 h-lvh">
+<div class="relative w-[300px] pt-5 flex flex-col bg-[#222222] border-r-[2px] border-black">
+    <div class="menu px-4 overflow-scroll">
+        <div class="mb-9 font-semibold text-white"  class={{visibility[drawer]}}><span class="text-[#fecd00]" >&lt;&sol;&gt; &nbsp;CENTRAL</span>HUB</div>
+        <div class="text-[#fecd00] flex items-center py-2 border-l-[2px] border-l-[#fecd00] border-b-[1px] border-b-[#aaa]"><span class="w-[40px] flex items-center justify-center"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon></span><h2 class={{visibility[drawer]}}>DAHSBOARD</h2></div>
+        @if(permissions[selectedRole]['type'] == 'group') {
+            @for(menugroup of permissions[selectedRole]['target']; track menugroup) {
+                <mat-accordion class="bg-transparent-imp bx-none">
+                    <mat-expansion-panel class="bg-transparent-imp bx-none" (opened)="panelOpenState == true"
+                            (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header class="p-none border-blue-300">
+                            <mat-panel-description>
+                                <span class="uppercase text-blue-300 border-blue-300">{{menugroup.group}}</span>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        @for(menuitem of menugroup.menus; track menuitem){
+                            <div class="text-white flex items-center py-2 border-b-[1px] border-b-[#aaa]"><span class="w-[40px] flex items-center justify-center"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="{{menuitem.icon}}"></mat-icon></span><h2 class={{visibility[drawer]}}>{{menuitem.name}}</h2></div>    
+                        }
+                    </mat-expansion-panel>
+                </mat-accordion>
+            }
+        }
+        @if(permissions[selectedRole]['type'] == 'simple') {
+            @for(menuitem of permissions[selectedRole]['target']; track menuitem) {
+                <div class="text-white flex items-center py-3 border-b-[1px] border-b-[#aaa]"><span class="w-[40px] flex items-center justify-center"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="{{menuitem.icon}}"></mat-icon></span><h2 class={{visibility[drawer]}}>{{menuitem.name}}</h2></div>    
+            }
+        }
+    </div>
+    <div class="absolute bottom-0 flex h-[50px] text-white w-full">
+        <div class="basis-1/2 px-4 pt-3 pb-4 border-slate-300 border-t-[2px] border-r-[2px] text-center">HELP DESK</div>
+        <div class="basis-1/2 px-4 pt-3 pb-4 border-slate-300 border-t-[2px] text-center">SYSTEM FAQ</div>
+    </div>
+</div>
+<div class="flex-1">
+    <div class="flex h-[80px] items-center justify-between px-4 bg-[#222222] text-white">
+        <div class="flex items-center">
+            <button clas="toggler"  mat-raised-button (click)="drawer = !drawer"><span class="w-[40px] flex items-center justify-center"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="list"></mat-icon></span></button>
+            <div class="search w-[250px]">
+                <mat-form-field>
+                <input matInput placeholder="Simple placeholder" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="account w-[250px]">
+            <mat-form-field>
+            <mat-label>Account Role</mat-label>
+            <mat-select [value] = '0' [(ngModel)]="selectedRole">
+                @for (role of roles; track role) {
+                <mat-option [value]="role.value">{{role.viewValue}}</mat-option>
+                }
+            </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="px-6 bg-[#222222] text-white pb-3">
+        <h3 >TACAPP / <span class="color-primary">DASHABRD</span></h3>
+    </div>
+    <div class="content"></div>
+</div>
+</div>
